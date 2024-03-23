@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config_tables>
+	<aosr>
+		<my_org></my_org>
+		<zakaz_org></zakaz_org>
+		<projekt_org></projekt_org>
+		<control_org></control_org>
+		<manager_my></manager_my>
+		<manager_zakaz></manager_zakaz>
+		<manager_proj></manager_proj>
+		<manager_control></manager_control>
+		<manager_prikaz_my></manager_prikaz_my>
+		<manager_prikaz_zakaz></manager_prikaz_zakaz>
+		<manager_prikaz_proj></manager_prikaz_proj>
+		<manager_prikaz_control></manager_prikaz_control>
+		<data_act></data_act>
+		<data_start_work></data_start_work>
+		<data_end_work></data_end_work>
+		<number_act></number_act>
+		<work></work>
+		<work_material></work_material>
+	</aosr>
+	<amtt>
+		<my_org></my_org>
+		<zakaz_org></zakaz_org>
+		<projekt_org></projekt_org>
+		<control_org></control_org>
+		<manager_my></manager_my>
+		<manager_zakaz></manager_zakaz>
+		<manager_proj></manager_proj>
+		<manager_control></manager_control>
+	</amtt>
+</config_tables>

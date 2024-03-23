@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+	<pathes>
+		<path_act_base_folder>base_pattern/</path_act_base_folder>
+		<path_config>config/config.xml</path_config>
+		<path_config_tables>config/config_tables.xml</path_config_tables>
+		<path_result>result/</path_result>
+	</pathes>
+
+	<act_names>
+		<act name1 = "аоср" name2 = "aosr">акт освидетельствования скрытых работ</act>
+		<act name1 = "смтт" name2 = "smtt">cвидетельство о монтаже технологического трубопровода</act>
+		<act name1 = "вик" name2 = "vik">протокол по визуальному и измерительному контролю</act>
+		<act name1 = "аитпп" name2 = "aitpp">акт испытания трубопровода на прочность и плотность</act>
+		<act name1 = "апптх" name2 = "appth">акт промывки и продувки технологического трубопровода</act>
+		<act name1 = "аитг" name2 = "aitg">акт испытания трубопровода на герметичность (Для трубопроводов категорий А, Б(а), Б(б), а также вакуумных)</act>
+		<act name1 = "апрск" name2 = "aprsk">акт на предварительную растяжку (сжатие) компенсаторов</act>
+		<act name1 = "апуоф" name2 = "apyof">акт проверки установки оборудования на фундамент</act>
+		<act name1 = "апгмиг" name2 = "apgmig">акт о проведении гидростатического или манометрического испытания на герметичность</act>
+		<act name1 = "аппс" name2 = "apps">акт промывки (продувки) системы</act>
+		<act name1 = "всоауса" name2 = "vsoaysa">ведомость смонтированного оборудования, агрегатов, узлов и средств автоматизации</act>
+		<act name1 = "апиио" name2 = "apiio">акт о проведении индивидуального испытания оборудования</act>
+		<act name1 = "апвсо" name2 = "apvso">акт приёмки внутренней системы отопления</act>
+		<act name1 = "аоуссито" name2 = "aoyssito">акт освидетельствования участков сетей инженерно-технического обеспечения</act>
+		<act name1 = "аоок" name2 = "aook">акт освидетельствования ответственных конструкций</act>
+	</act_names>
+</config>

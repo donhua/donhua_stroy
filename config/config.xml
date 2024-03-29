@@ -8,7 +8,7 @@
 	</pathes>
 
 	<act_names>
-		<act name1 = "аоср" name2 = "aosr">акт освидетельствования скрытых работ</act>
+		<act name1="аоср">акт освидетельствования скрытых работ</act>
 		<act name1 = "смтт" name2 = "smtt">cвидетельство о монтаже технологического трубопровода</act>
 		<act name1 = "вик" name2 = "vik">протокол по визуальному и измерительному контролю</act>
 		<act name1 = "аитпп" name2 = "aitpp">акт испытания трубопровода на прочность и плотность</act>
@@ -24,4 +24,18 @@
 		<act name1 = "аоуссито" name2 = "aoyssito">акт освидетельствования участков сетей инженерно-технического обеспечения</act>
 		<act name1 = "аоок" name2 = "aook">акт освидетельствования ответственных конструкций</act>
 	</act_names>
+
+	<aosr name="аоср">
+		<full_name>акт освидетельствования скрытых работ</full_name>
+		<my_org></my_org>
+		<zakaz_org></zakaz_org>
+		<control_org></control_org>
+		<project_org></project_org>
+		<my_manager></my_manager>
+		<zakaz_manager></zakaz_manager>
+		<control_manager></control_manager>
+		<project_manager></project_manager>
+		<act_number></act_number>
+		<date_act></date_act>
+	</aosr>
 </config>

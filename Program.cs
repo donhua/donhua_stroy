@@ -1,8 +1,6 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Xml;
+﻿using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Word;
-using Microsoft.Office.Interop.Excel;
+using System.Xml;
 using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace Donhua
@@ -62,16 +60,17 @@ namespace Donhua
             {
                 foreach (XmlElement xnode in xRoot)
                 {
-                    if (xnode.Name == nameAct) {
+                    if (xnode.Name == nameAct)
+                    {
                         Console.WriteLine($"Элемент {xnode.Name} найден");
-                            foreach (XmlNode childnode in xnode)
-                            {
-                                Console.WriteLine(childnode.Name);
-                                string a = childnode.Name;
-                                actList.Add(a);
-                            }
-                            Console.WriteLine(actList.Count);
-                            Console.WriteLine(string.Join(", ", actList.ToArray()));
+                        foreach (XmlNode childnode in xnode)
+                        {
+                            Console.WriteLine(childnode.Name);
+                            string a = childnode.Name;
+                            actList.Add(a);
+                        }
+                        Console.WriteLine(actList.Count);
+                        Console.WriteLine(string.Join(", ", actList.ToArray()));
                     }
                     else { Console.WriteLine("Отчет в xml не найден!!!"); }
                 }
@@ -86,7 +85,7 @@ namespace Donhua
         }
 
 
-        public  void GetInExelValue() 
+        public void GetInExelValue()
         {
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.Application();
             Workbook wb = xlsApp.Workbooks.Open(filename, 0, true, 5, "", "", true, XlPlatform.xlWindows, "\t", false, false, 0, true);
@@ -98,18 +97,19 @@ namespace Donhua
             string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
         }
 
-        public void Create_act()
+
+        private void Replaser(string text_find, string text_replace, Application app, Document doc)
         {
             //создаем акт по шаблону, подставляем значения в поля акта, сохраняем в выходную папку
-            Application fileOpen = new Application();
-            Document document = fileOpen.Documents.Open(@"C:\Users\Yakunin\source\repos\donhua_stroy\template\aosr.dotx", ReadOnly: false);
-            fileOpen.Visible = true;
-            document.Activate();
-            Find findObject = fileOpen.Selection.Find;
+            //Application fileOpen = new Application();
+            //Document document = fileOpen.Documents.Open(@"C:\Users\Yakunin\source\repos\donhua_stroy\template\aosr.dotx", ReadOnly: false);
+            //fileOpen.Visible = true;
+            doc.Activate();
+            Find findObject = app.Selection.Find;
             findObject.ClearFormatting();
-            findObject.Text = "data_inform";
+            findObject.Text = text_find;
             findObject.Replacement.ClearFormatting();
-            findObject.Replacement.Text = "sdsdff";
+            findObject.Replacement.Text = text_replace;
 
             object findtext = findObject.Text;
             object reptext = findObject.Replacement.Text;
@@ -129,13 +129,36 @@ namespace Donhua
             object replace = 2;
             object wrap = 1;
             //execute find and replace
-            fileOpen.Selection.Find.Execute(ref findtext, ref matchCase, ref matchWholeWord,
+            app.Selection.Find.Execute(ref findtext, ref matchCase, ref matchWholeWord,
                 ref matchWildCards, ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref reptext, ref replace,
                 ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
-            document.SaveAs2(@"C:\Test.doc");
-            fileOpen.Quit();
-            Console.WriteLine("Операция сохранения прошла успешно!");
+            Console.WriteLine("Замена прошла успешно!");
         }
+        private string GenerateName()
+        { //генерирует название файла
+            string name = "ку";
+            return name;
+        }
+        public void CreateAktDoc(string[] path_act, string[] arrFind, string[] arrReplace)
+        { //замена слов в документе по списку в документах по списку и сохраняет их
+            Application app = new Application();
+            for (int j = 0; j < path_act.Length; j++)
+            {
+                Document doc = app.Documents.Open(path_act[j], ReadOnly: false);
+                app.Visible = true;
+                doc.Activate();
+                for (int i = 0; i < arrFind.Length; i++)
+                {
+                    Replaser(arrFind[i], arrReplace[i], app, doc);
+                }
+                doc.SaveAs2($"{GenerateName()}.docx");
+                
+                Console.WriteLine("сохранение после замены прошло успешно!");
+            }
+            app.Quit();
+
+        }
+
     }
     class PathCollection
     {
@@ -148,7 +171,7 @@ namespace Donhua
     {
         static void Main()
         {
-            PrintAct act = new PrintAct ();
+            PrintAct act = new PrintAct();
             act.Create_act();
             Console.ReadLine();
         }

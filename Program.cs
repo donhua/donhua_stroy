@@ -3,6 +3,20 @@ using Microsoft.Office.Interop.Word;
 using System.Xml;
 using Application = Microsoft.Office.Interop.Word.Application;
 
+
+/*
+Этот кривой код запилен исключительно в образовательных целях!!!
+Хозяин этого кода [donhua] suvorov.mo@yandex.ru
+Постарался понятно задокументировать код,
+чтобы изучение кода было комфортным. 
+
+
+  -_-*
+
+
+
+*/
+
 namespace Donhua
 {
     class PrintAct
@@ -58,19 +72,21 @@ namespace Donhua
         /// <param name="nameAct">название акта для которого формируем список</param>
         /// <returns>список полей string</returns>
         /// HACK прописан путь к файлу
-        /// TODO вывести путь в параметр и добавить проверку наличия файла
+        /// TODO добавить проверку наличия файла
         /// TODO После отладку убрать Console.WriteLine()
-        public void GetTabletValueOutConfig(string nameAct)
+        public Dictionary<string, string> GetTabletValueOutConfig(string nameAct="aosr", string path_config= @"config/config.xml")
         {
             XmlDocument xDoc = new();
-            xDoc.Load(@"config/config.xml");
+            xDoc.Load(path_config);
             XmlElement? xRoot = xDoc.DocumentElement;
+            Dictionary<string, string> act_info = new Dictionary<string, string>();
             if (xRoot != null)
             {
                 foreach (XmlElement xnode in xRoot)
                 {
                     if (xnode.Name == nameAct)
                     {
+                        
                         Console.WriteLine($"Элемент {xnode.Name} найден");
                         foreach (XmlNode childnode in xnode)
                         {
@@ -84,6 +100,7 @@ namespace Donhua
                     else { Console.WriteLine("Отчет в xml не найден!!!"); }
                 }
             }
+            return act_info;
         }
 
         /// <summary>
@@ -94,7 +111,6 @@ namespace Donhua
         /// HACK выводит пустой словарь
         public Dictionary<string, string> CreateDitionaryForActValue()
         {
-            //создать dict с парой значений "имя поля для вставки значения в акт" и "значение из базы"
             Dictionary<string, string> dict = new Dictionary<string, string>();
             return dict;
         }

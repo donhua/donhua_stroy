@@ -10,11 +10,12 @@ using Application = Microsoft.Office.Interop.Word.Application;
 Постарался понятно задокументировать код,
 чтобы изучение кода было комфортным. 
 
-
-  -_-*
-
-
-
+'||''|.    ..|''||   '|.   '|' '||'  '||' '||'  '|'     |     
+ ||   ||  .|'    ||   |'|   |   ||    ||   ||    |     |||    
+ ||    || ||      ||  | '|. |   ||''''||   ||    |    |  ||   
+ ||    || '|.     ||  |   |||   ||    ||   ||    |   .''''|.  
+.||...|'   ''|...|'  .|.   '|  .||.  .||.   '|..'   .|.  .||.                                                             
+                                                              
 */
 
 namespace Donhua
@@ -142,7 +143,6 @@ namespace Donhua
         /// <param name="doc">передаем документ в котором проводим правки</param>
         private void Replaser(string text_find, string text_replace, Application app, Document doc)
         {
-            //создаем акт по шаблону, подставляем значения в поля акта, сохраняем в выходную папку
             doc.Activate(); //TODO вывести из метода
             Find findObject = app.Selection.Find;
             findObject.ClearFormatting();
